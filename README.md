@@ -1,4 +1,4 @@
-# TCP连接限速反爬靶场（tcp-rate-limit-goat）
+# TCP连接级别限速反爬验证靶场（tcp-rate-limit-goat）
 
 # 一、这是什么？
 
