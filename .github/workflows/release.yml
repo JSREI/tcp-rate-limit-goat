@@ -1,0 +1,51 @@
+name: release
+
+on:
+  release:
+    types: [ created, edited ]
+
+jobs:
+  release:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.branch }}
+      - name: Unshallow
+        run: git fetch
+      - name: Use Golang
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.23
+
+      - name: Run GoReleaser
+        if: "github.event.release.prerelease"
+        uses: goreleaser/goreleaser-action@v3
+        with:
+          version: latest
+          args: release --skip-publish --skip-validate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release
+        if: "github.event.release.prerelease"
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            dist/*checksums.txt
+            dist/*.tar.gz
+            dist/*.zip
+          prerelease: true
+          generate_release_notes: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run GoReleaser
+        if: "!github.event.release.prerelease"
+        uses: goreleaser/goreleaser-action@v3
+        with:
+          version: latest
+          args: release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GoReleaser_TOKEN }}
