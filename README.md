@@ -16,9 +16,11 @@ https://www.v2ex.com/t/1079960
 
 # 二、下载 & 启动
 
-## 2.1 从Release下载
+## 2.1 从Releases下载
 
-TODO 
+在releases页面选择合适自己系统的可执行文件下载：
+
+https://github.com/JSREI/tcp-rate-limit-goat/releases
 
 ## 2.2 从源码编译运行
 
