@@ -111,7 +111,11 @@ portDetector.SetBufferSize(20)  // 调整为记录最近20个端口
 
 ### 完整示例
 
-请查看 [examples](./examples) 目录获取完整的使用示例。
+请查看项目根目录下的 [examples](../../examples) 目录获取完整的使用示例。提供了三种不同复杂度的示例：
+
+1. **simple** - 基础示例，展示最简单的速率限制检测用法
+2. **advanced** - 高级示例，展示动态配置和多检测器组合使用
+3. **main.go** - 完整示例，展示各种检测器的协同工作方式
 
 ## API 参考
 
@@ -146,4 +150,4 @@ portDetector.SetBufferSize(20)  // 调整为记录最近20个端口
 
 ## 许可证
 
-MIT 
+MIT
